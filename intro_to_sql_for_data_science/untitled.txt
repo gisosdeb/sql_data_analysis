@@ -1,0 +1,7 @@
+grep 'geo_name:*' params.yaml | sed 's/geo_name://' | tr -d '[:space:]' | tr -d '"'
+grep 'country_name:*' params.yaml | sed 's/country_name://' | tr -d '[:space:]' | tr -d '"'
+grep "brightness:*" params.yaml | sed "s/brightness://" | tr -d '[:space:]' | tr -d '"'
+shell grep "geo_shapefile:*" params.yaml | sed "s/geo_shapefile://" | tr -d '[:space:]' | tr -d '"' | sed 's/.shp//'
+wget -q -O- 'https://ngdc.noaa.gov/eog/data/web_data/v4composites/' | grep -o F[0-9][0-9]$(year).v4.tar | uniq | tail -1
+shell if [ $(year) -lt 2010 ];then echo "b";elif [ $(year) -eq 2010 ];then echo "d";else echo "c";fi
+shell echo $(tar_file) | sed 's/.tar/$(letter)_web.stable_lights.avg_vis/'
