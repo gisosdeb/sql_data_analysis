@@ -1,0 +1,4 @@
+wget==not installed
+pandas==1.0.1
+psycop2==not installed
+watermark==2.0.2
